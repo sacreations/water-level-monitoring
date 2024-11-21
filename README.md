@@ -18,6 +18,7 @@ This project is designed to monitor water levels, control a motor based on user-
 - ESP32
 - Relay module (for motor control)
 - Cloud API (supports HTTP GET and POST requests)
+- Ultrasonic sensor for get water level
 - MariaDB (for cloud database)
 
 ---
@@ -40,8 +41,8 @@ This project is designed to monitor water levels, control a motor based on user-
    - Motor turns OFF when the water level is sufficient.
 
 3. **Cloud Integration**:
-   - Fetches the latest water level using `GET /water-level`.
    - Updates motor state using `POST /motor`.
+   - Updates water level using `POST /api/water-level`
 
 4. **Bluetooth Commands**:
    - Set Wi-Fi credentials: `SSID:<SSID> PASS:<PASSWORD>`
@@ -52,10 +53,9 @@ This project is designed to monitor water levels, control a motor based on user-
 ## API Endpoints
 | Endpoint                | Method | Description                           |
 |-------------------------|--------|---------------------------------------|
-| `/api/water-level`      | GET    | Fetch the current water level         |
 | `/api/water-level`      | POST   | Update the water level (from the app) |
 | `/api/motor`            | GET    | Get the current motor state           |
-| `/api/motor`            | POST   | Update the motor state (from the app) |
+| `/api/motor`            | POST   | Update the motor state                |
 
 ---
 
@@ -95,9 +95,9 @@ This project is designed to monitor water levels, control a motor based on user-
 
 ## Usage Example
 1. Start the ESP32.
-2. Use a Bluetooth terminal to configure Wi-Fi and water level mode:
+2. Use a Bluetooth to configure Wi-Fi :
    - `SSID:HomeWiFi PASS:password123`
-   - `MODE:50`
+
 3. Once connected, the ESP32 fetches water levels and adjusts the motor state automatically.
 
 ---
